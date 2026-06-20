@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0f1e;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060d18; }
+::-webkit-scrollbar-thumb { background: #3182ce; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #63b3ed; }
+
+/* Input focus glow */
+input:focus, textarea:focus {
+  border-color: rgba(99,179,237,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(99,179,237,0.08) !important;
+  outline: none;
+}
+
+/* Smooth transitions */
+button { transition: all 0.2s ease; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  nav .links { display: none !important; }
+  nav .joinBtn { display: none !important; }
+  nav .hamburger { display: flex !important; }
+}
