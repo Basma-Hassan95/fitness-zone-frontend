@@ -4,6 +4,17 @@ import { FiMail, FiUsers, FiCheck, FiAlertCircle, FiArrowRight } from "react-ico
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "../components/AdminLayout";
 import axios from "axios";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+
+const chartData = [
+  { day: "Mon", Messages: 2, Signups: 1 },
+  { day: "Tue", Messages: 1, Signups: 0 },
+  { day: "Wed", Messages: 3, Signups: 2 },
+  { day: "Thu", Messages: 0, Signups: 1 },
+  { day: "Fri", Messages: 2, Signups: 0 },
+  { day: "Sat", Messages: 1, Signups: 1 },
+  { day: "Sun", Messages: 4, Signups: 2 },
+];
 
 const Counter = ({ target }) => {
   const [count, setCount] = useState(0);
@@ -188,6 +199,33 @@ const AdminDashboard = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Weekly Activity Chart */}
+        <motion.div
+          style={{ ...styles.card, marginBottom: "24px" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <div style={styles.cardHeader}>
+            <div style={styles.cardTitle}>📈 Weekly Activity</div>
+            <div style={{ color: "#4a5568", fontSize: "12px" }}>This Week</div>
+          </div>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={chartData} barSize={14}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+              <XAxis dataKey="day" tick={{ fill: "#4a5568", fontSize: 12 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "#4a5568", fontSize: 12 }} axisLine={false} tickLine={false} allowDecimals={false} />
+              <Tooltip
+                contentStyle={{ background: "#0d1b2a", border: "0.5px solid rgba(99,179,237,0.2)", borderRadius: "10px", color: "#e2e8f0" }}
+                cursor={{ fill: "rgba(99,179,237,0.04)" }}
+              />
+              <Legend wrapperStyle={{ color: "#4a5568", fontSize: "12px" }} />
+              <Bar dataKey="Messages" fill="#63b3ed" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="Signups" fill="#68d391" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </motion.div>
 
         {/* Quick Actions */}
         <motion.div
